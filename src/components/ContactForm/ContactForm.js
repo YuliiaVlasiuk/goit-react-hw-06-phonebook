@@ -42,14 +42,20 @@ export const ContactForm = () => {
   const handleSubmit = event=> {
     event.preventDefault();
 
-    const newContact = {
-      id: nanoid(),
-      name,
-      number,
-    };
-  dispatch(addContact(newContact));
+
+console.log(name);
+console.log(number);
+
+  const newContact = {
+       id: nanoid(),
+       name,
+       number,
+     };
+
+     console.log(newContact);  
+   dispatch(addContact(newContact));
   setName('');
-  setNumber('');
+   setNumber('');
   };
   
   
@@ -58,18 +64,18 @@ export const ContactForm = () => {
   return (
 <Formik
       // validationSchema={phoneSchema}
-    
+      initialValues={{ name: '', number: '' }}
     >
       <Form onSubmit={handleSubmit} >
         <FormField>
           Name
-          <Field name="name" onChange={onChangeName}/>
+          <Field name="name" value={name} onChange={onChangeName}/>
           <ErrorMessage name="name" component="div" />
         </FormField>
 
         <FormField >
           Number
-          <Field type="tel" name="number" onChange={onChangeNumber}/>
+          <Field type="tel" name="number" value={number} onChange={onChangeNumber}/>
           <ErrorMessage name="number" component="div" />
         </FormField>
 

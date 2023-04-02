@@ -16,11 +16,10 @@ const contactsSlice = createSlice({
     filter: '',
   },
   reducers: {
-    addContact(state, { newContact }) {
-        state.items.push(newContact);
+    addContact(state,  newContact ) {
+    state.items.push(newContact.payload);
       },
-   
-    },
+   },
     // deleteTask(state, action) {
     //   const index = state.findIndex(task => task.id === action.payload);
     //   state.splice(index, 1);

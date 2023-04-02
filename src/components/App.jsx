@@ -1,6 +1,6 @@
 import { Layout } from 'components/Layout/Layout';
 import { ContactForm } from 'components/ContactForm/ContactForm';
-//import { ContactList } from 'components/TaskList/TaskList';
+import { ContactList } from 'components/ContactList/ContactList';
 
 export const App = () => {
   return (
@@ -10,7 +10,7 @@ export const App = () => {
         <ContactForm/>
         <h2>Contacts</h2>
         {/* <Filter value={filter} onChange={handleInputChange} /> */}
-        {/* <ContactList/> */}
+         <ContactList/> 
         
       </div>
       
