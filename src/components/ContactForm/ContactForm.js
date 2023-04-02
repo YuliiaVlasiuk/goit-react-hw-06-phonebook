@@ -1,14 +1,14 @@
- //import { Button } from "components/Button/Button";
- import { useState } from 'react';
- import { useDispatch } from 'react-redux';
- //import { useSelector } from 'react-redux';
- import { addContact } from "../../redux/contactsSlice";
- //import { getContacts } from "../../redux/selectors";
- import { nanoid } from 'nanoid';
- //import * as Yup from 'yup';
- import { Formik, Field } from 'formik';
- import { Form, FormField, ErrorMessage } from './ContactForm.styled';
- 
+//import { Button } from "components/Button/Button";
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+//import { useSelector } from 'react-redux';
+import { addContact } from '../../redux/contactsSlice';
+//import { getContacts } from "../../redux/selectors";
+import { nanoid } from 'nanoid';
+//import * as Yup from 'yup';
+import { Formik, Field } from 'formik';
+import { Form, FormField, ErrorMessage } from './ContactForm.styled';
+
 // const phoneSchema = Yup.object().shape({
 //   name: Yup.string()
 //     .min(2, 'Too Short!')
@@ -27,61 +27,59 @@
 //     .required('Required'),
 // });
 
-
 export const ContactForm = () => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
-
   const onChangeName = e => setName(e.currentTarget.value);
   const onChangeNumber = e => setNumber(e.currentTarget.value);
 
-// const contacts = useSelector(getContacts);
- const dispatch = useDispatch();
+  // const contacts = useSelector(getContacts);
+  const dispatch = useDispatch();
 
-  const handleSubmit = event=> {
+  const handleSubmit = event => {
     event.preventDefault();
 
+    console.log(name);
+    console.log(number);
 
-console.log(name);
-console.log(number);
+    const newContact = {
+      id: nanoid(),
+      name,
+      number,
+    };
 
-  const newContact = {
-       id: nanoid(),
-       name,
-       number,
-     };
-
-     console.log(newContact);  
-   dispatch(addContact(newContact));
-  setName('');
-   setNumber('');
+    console.log(newContact);
+    dispatch(addContact(newContact));
+    setName('');
+    setNumber('');
   };
-  
-  
-
 
   return (
-<Formik
+    <Formik
       // validationSchema={phoneSchema}
       initialValues={{ name: '', number: '' }}
     >
-      <Form onSubmit={handleSubmit} >
+      <Form onSubmit={handleSubmit}>
         <FormField>
           Name
-          <Field name="name" value={name} onChange={onChangeName}/>
+          <Field name="name" value={name} onChange={onChangeName} />
           <ErrorMessage name="name" component="div" />
         </FormField>
 
-        <FormField >
+        <FormField>
           Number
-          <Field type="tel" name="number" value={number} onChange={onChangeNumber}/>
+          <Field
+            type="tel"
+            name="number"
+            value={number}
+            onChange={onChangeNumber}
+          />
           <ErrorMessage name="number" component="div" />
         </FormField>
 
         <button type="submit">Add contact</button>
       </Form>
     </Formik>
-
   );
 };

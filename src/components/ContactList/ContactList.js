@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import { getContacts } from "redux/selectors";
+import {ContactItem}  from "components/ContactItem/ContactItem";
 
-//import { Contact } from "components/Task/Task";
 // Імпортуємо об'єкт значень фільтра
 //import { statusFilters } from "../../redux/constants";
 // const getVisibleTasks = (tasks, statusFilter) => {
@@ -28,11 +28,13 @@ export const ContactList = () => {
     <ul>
     {contacts.map(contact => (
       <li key={contact.id} style={{ paddingBottom: '10px' }}>
-        <span style={{ width: '220px' }}>
+       <ContactItem contact={contact} />
+
+        {/* <span style={{ width: '220px' }}>
           {' '}
           {contact.name} : {contact.number}{' '}
         </span>
-        <button> Delete </button>
+        <button onClick={()=>handleDelete(contact.id)}> Delete </button> */}
       </li>
     ))}
   </ul>

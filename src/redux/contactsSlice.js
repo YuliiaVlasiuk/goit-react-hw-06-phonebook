@@ -1,5 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
-
+import { createSlice } from '@reduxjs/toolkit';
 
 const listContacts = [
   { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
@@ -8,32 +7,25 @@ const listContacts = [
   { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
 ];
 
-
 const contactsSlice = createSlice({
-  name: "contacts",
-  initialState:{
-    items:listContacts,
+  name: 'contacts',
+  initialState: {
+    items: listContacts,
     filter: '',
   },
   reducers: {
-    addContact(state,  newContact ) {
-    state.items.push(newContact.payload);
-      },
-   },
-    // deleteTask(state, action) {
-    //   const index = state.findIndex(task => task.id === action.payload);
-    //   state.splice(index, 1);
-    // },
-    // toggleCompleted(state, action) {
-    //   for (const task of state) {
-    //     if (task.id === action.payload) {
-    //       task.completed = !task.completed;
-    //       break;
-    //     }
-    //   }
-    // },
-  },
-);
+    addContact(state, newContact) {
+      state.items.push(newContact.payload);
+    },
 
-export const { addContact } = contactsSlice.actions;
+    deleteContact(state, action) {
+      const index = state.items.findIndex(
+        contact => contact.id === action.payload
+      );
+      state.items.splice(index, 1);
+    },
+  },
+});
+
+export const { addContact, deleteContact } = contactsSlice.actions;
 export const contactsReducer = contactsSlice.reducer;
