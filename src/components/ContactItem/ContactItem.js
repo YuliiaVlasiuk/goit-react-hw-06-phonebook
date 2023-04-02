@@ -1,5 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { deleteContact } from '../../redux/contactsSlice';
+import PropTypes from 'prop-types';
 
 export const ContactItem = ({ contact }) => {
   const dispatch = useDispatch();
@@ -19,3 +20,13 @@ export const ContactItem = ({ contact }) => {
     
   );
 };
+
+ContactItem.propTypes = {
+  contact: PropTypes.shape({
+    id:PropTypes.string,
+    name:PropTypes.string,
+    number:PropTypes.string}).isRequired,
+  
+};
+
+  
