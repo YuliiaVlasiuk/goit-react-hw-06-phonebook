@@ -48,8 +48,6 @@ export const ContactForm = () => {
       number,
     };
   dispatch(addContact(newContact));
- 
- 
   setName('');
   setNumber('');
   };
