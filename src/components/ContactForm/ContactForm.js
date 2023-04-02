@@ -63,6 +63,12 @@ export const ContactForm = () => {
       return;
     }
 
+    if (newContact.name==="" || newContact.number==="") {
+      Notiflix.Notify.failure(`Please enter contact information`);
+      return;
+    }
+
+
     dispatch(addContact(newContact));
     setName('');
     setNumber('');
