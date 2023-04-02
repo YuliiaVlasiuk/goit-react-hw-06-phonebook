@@ -24,8 +24,14 @@ const contactsSlice = createSlice({
       );
       state.items.splice(index, 1);
     },
+
+    changeFilter(state, { payload }) {
+      state.filter = payload;
+    },
+
+
   },
 });
 
-export const { addContact, deleteContact } = contactsSlice.actions;
+export const { addContact, deleteContact, changeFilter  } = contactsSlice.actions;
 export const contactsReducer = contactsSlice.reducer;

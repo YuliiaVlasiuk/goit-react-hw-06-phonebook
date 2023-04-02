@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { getContacts } from "redux/selectors";
+import { getContacts, getFilter } from "redux/selectors";
 import {ContactItem}  from "components/ContactItem/ContactItem";
 
 // Імпортуємо об'єкт значень фільтра
@@ -19,22 +19,33 @@ export const ContactList = () => {
   // const contacts = useSelector(state => state.contacts);
 
   const contacts = useSelector(getContacts);
+  const search= useSelector(getFilter)
   console.log(contacts);
+
+
+  // const contactsFilter = () => {
+  //   const filterNormalize = filterValue.toLowerCase();
+
+  //   return contacts.filter(contact =>
+  //     contact.name.toLowerCase().includes(filterNormalize)
+  //   );
+  // };
+
+  const filtredContacts = contacts.filter(contact =>
+      contact.name.toLowerCase().includes(search.toLowerCase()))
+  
+  
+console.log( filtredContacts);
+
   // Отримуємо значення фільтра із стану Redux
   //const statusFilter = useSelector(state => state.filters.status);
   // Обчислюємо масив завдань, які необхідно відображати в інтерфейсі
  // const visibleTasks = getVisibleTasks(tasks, statusFilter);
   return (
     <ul>
-    {contacts.map(contact => (
+    { filtredContacts.map(contact => (
       <li key={contact.id} style={{ paddingBottom: '10px' }}>
        <ContactItem contact={contact} />
-
-        {/* <span style={{ width: '220px' }}>
-          {' '}
-          {contact.name} : {contact.number}{' '}
-        </span>
-        <button onClick={()=>handleDelete(contact.id)}> Delete </button> */}
       </li>
     ))}
   </ul>
